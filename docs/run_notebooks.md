@@ -2,7 +2,7 @@
 Here is a step by step guide to running and/or edit and re-running the example [Jupyter](https://jupyter.org/) notebooks.
 
 - Install Docker on your computer. https://docs.docker.com/get-docker/
-- Open a terminal window and paste the following
+- Open a terminal window and run the following command:
 ```shell
 docker run -p 8888:8888 ghcr.io/davidpratten/jetisu:latest
 ```
