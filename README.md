@@ -23,11 +23,3 @@ are defined in the same way!
 |-----------------------|-------------------------------------------------------------------|-----------------------------------|
 | Extensionally defined | Natural Language                                                  | Listed out in a table             |
 | Intensionally defined | Computable Constraints and Rules                                  | Generated or recognised on demand |
-
-Our databases and CRMs are full of extensionally defined tables, here are a few:
-
-| Intension (intended meaning) | Extension (list of rows)           |
-|------------------------------|------------------------------------|
-| Our Customers                | 1 row in a table for each customer |
-| Our Orders                   | 1 row in a table for each order    |
-
