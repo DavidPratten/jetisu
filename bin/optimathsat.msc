@@ -1,0 +1,69 @@
+{
+  "id": "it.unitn.disi.optimathsat",
+  "name": "Optimathsat",
+  "description": "Optimathsat",
+  "version": "1.7.3",
+  "executable": "/usr/bin/optimathsat.sh",
+  "extraFlags": [
+    [
+      "-opt.fzn.all_solutions",
+      "Print all solutions. This option can be used only when there is at most one objective function, or the solver is executed in lexicographic multi-objective mode.",
+      "bool",
+      "false"
+    ],
+    [
+      "-opt.fzn.asoft_encoding",
+      "If true, pseudo-boolean terms induced by global constraints are encoded with 'assert-soft' rather than with linear programming.",
+      "bool",
+      "true"
+    ],
+    [
+      "-opt.fzn.bv_integers",
+      "If true, all integer variables are encoded with BitVectors.",
+      "bool",
+      "false"
+    ],
+    [
+      "-opt.fzn.finite_precision",
+      "Sets the number of decimals to use when printing infinite precision rational numbers as finite precision decimal values. Must be larger or equal 2.",
+      "int",
+      "32"
+    ],
+    [
+      "-opt.fzn.finite_precision_model",
+      "If true, infinite precision rational numbers are printed as finite precision decimal values.",
+      "bool",
+      "false"
+    ],
+    [
+      "-opt.fzn.max_solutions",
+      "Sets an upper-bound to the number of solutions being printed. If zero, no upper-bound is imposed.",
+      "int",
+      "0"
+    ],
+    [
+      "-opt.fzn.output_var_file",
+      "If different than the empty string, it dumps the output variables in a file with the given name or to the standard output when the argument is equal '-'.",
+      "string",
+      ""
+    ],
+    [
+      "-opt.fzn.partial_solutions",
+      "Print (sub-optimal) solutions of input formula along the optimization search. Depending on configuration, a solution may be printed multiple times.",
+      "bool",
+      "false"
+    ],
+    [
+      "-input",
+      "Select input language. Can be `smt', `smt2', 'dimacs' or 'fzn'."
+      "string"
+      "smt"
+    ]
+  ],
+  "supportsMzn": false,
+  "supportsFzn": true,
+  "needsSolns2Out": true,
+  "needsMznExecutable": false,
+  "needsStdlibDir": false,
+  "isGUIApplication": false
+}
