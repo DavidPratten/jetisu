@@ -38,6 +38,7 @@ select * from ACT_Conveyance_Duty where price = 2000000;
                                           [(True, True, 2000000.0, 90800), (True, False, 2000000.0, 90800),
                                            (False, False, 2000000.0, 100000)]))
 
+
 def test_idr_4ab4e9269f():
     res = idr_query("""
 select price from ACT_Conveyance_Duty where duty = 50150 and eligible_owner_occupier;
@@ -95,3 +96,36 @@ def test_idr_4346617aaa():
     assert sorted_res(res) == sorted_res((('from_start', 'to_stop', 'n', 'nth', 'nth_value'),
                                           [(15, 20.0, 5.0, 0, 15.0), (13.3333333333, 20.0, 5.0, 1, 15.0),
                                            (10, 20.0, 5.0, 2, 15.0), (0, 20.0, 5.0, 3, 15.0)]))
+
+
+def test_idr_60cade641e():
+    res = idr_query("""select * from australian_gst where price = 110;
+""", 'data')
+    assert sorted_res(res) == sorted_res((('price', 'ex_gst_amount', 'gst_amount'), [(110.0, 100.0, 10.0)]))
+
+
+def test_idr_c46f0fe5f7():
+    res = idr_query("""select * from Australian_GST where price=100 and ex_gst_amount=1 and gst_amount=1;
+""", 'data')
+    assert sorted_res(res) == sorted_res((('price', 'ex_gst_amount', 'gst_amount'), []))
+
+
+def test_idr_f6a1458c80():
+    res = idr_query("""select * from standard_birthday_money where age = 10;
+""", 'data')
+    assert sorted_res(res) == sorted_res((('age', 'birthday_money'), [(10.0, 100.0)]))
+
+
+def test_idr_4c8196e3fb():
+    res = idr_query("""select * from new_birthday_money where age = 10 ;
+""", 'data')
+    assert sorted_res(res) == sorted_res(
+        (('age', 'good_behaviour', 'birthday_money'), [(10.0, False, 0), (10.0, True, 200)]))
+
+
+def test_idr_4cbd6b19e0():
+    res = idr_query("""select good_behaviour from new_birthday_money
+    where age = 10
+        and birthday_money = 200;
+""", 'data')
+    assert sorted_res(res) == sorted_res((('good_behaviour',), [(True,)]))
