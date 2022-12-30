@@ -15,6 +15,7 @@ You can  ```docker run``` the example Jupyter notebooks for yourself.
 ```shell
 docker run -p 8888:8888 ghcr.io/davidpratten/jetisu:latest
 ```
+Here is help on [How to run the example notebooks](run_notebooks.md) 
 ## Unpacking "intensionally defined"
 Every table has an intension, which is its intended meaning and its extension which is its list of rows. But not all tables 
 are defined in the same way!  
