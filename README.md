@@ -13,7 +13,7 @@ The examples are chosen to illustrate the benefits (and/or challenges) of using 
 You can  ```docker run``` the example Jupyter notebooks for yourself.
 
 ```shell
-docker run XXXXXXXXXXX
+docker run -p 8888:8888 ghcr.io/davidpratten/jetisu:latest
 ```
 ## Unpacking "intensionally defined"
 Every table has an intension, which is its intended meaning and its extension which is its list of rows. But not all tables 
