@@ -128,7 +128,7 @@ def idr_query(sql_query, return_data):
     path_to_minizinc = "C:/Program Files/MiniZinc/minizinc" if sys.platform.startswith('win32') else "/usr/bin/minizinc"
     result = subprocess.run(
         [path_to_minizinc, "--solver", "optimathsat", model_fn + ".mzn"],
-        stdout=subprocess.PIPE)
+        stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     output = result.stdout.decode('utf-8')
     data_output = []
     data = False
@@ -154,7 +154,7 @@ def idr_query(sql_query, return_data):
     if not solver_data:
         result = subprocess.run(
             [path_to_minizinc, model_fn + ".mzn"],
-            stdout=subprocess.PIPE)
+            stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         output = result.stdout.decode('utf-8')
         data_output = []
         data = False
