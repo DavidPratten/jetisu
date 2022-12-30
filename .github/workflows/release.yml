@@ -52,7 +52,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: build-and-push-image
     container:
-      image: ghcr.io/davidpratten/binder_trial:latest
+      image: ghcr.io/davidpratten/jetisu:latest
       env:
         NODE_ENV: development
       ports:
