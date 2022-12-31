@@ -24,3 +24,11 @@ are defined in the same way!
 |-----------------------|-------------------------------------------------------------------|-----------------------------------|
 | Extensionally defined | Natural Language                                                  | Listed out in a table             |
 | Intensionally defined | Computable Constraints and Rules                                  | Generated or recognised on demand |
+## Built With
+* [sqlglot](https://github.com/tobymao/sqlglot)
+* [MiniZinc](https://www.minizinc.org/)
+* [OptiMathSAT](https://optimathsat.disi.unitn.it/)
+* [Gecode](https://www.gecode.org/)
+* [Jupyter](https://jupyter.org/)
+* [Docker](https://www.docker.com/)
+* [Python](https://www.python.org/)
