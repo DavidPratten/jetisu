@@ -22,8 +22,8 @@ are defined in the same way!
 
 | How defined           | Intension (a test that is true if a row is a member of the table) | Extension (list of rows)          |
 |-----------------------|-------------------------------------------------------------------|-----------------------------------|
-| Extensionally defined | Natural Language                                                  | Listed out in a table             |
-| Intensionally defined | Computable Constraints and Rules                                  | Generated or recognised on demand |
+| Extensionally defined | Natural Language                                                  | __Listed out in a table__         |
+| Intensionally defined | __Computable Constraints and Rules__                              | Generated or recognised on demand |
 ## Built With
 * [sqlglot](https://github.com/tobymao/sqlglot)
 * [MiniZinc](https://www.minizinc.org/)
