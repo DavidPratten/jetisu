@@ -19,6 +19,17 @@ def idr_read_model(canonical_table_name):
         return file.read()
 
 
+def mzn_quote(k, v, typed_parameters_dict):
+    if typed_parameters_dict[k] == 'bool':
+        return str(v).lower()
+    elif typed_parameters_dict[k] == 'float':
+        return str(v)
+    elif typed_parameters_dict[k] == 'int':
+        return str(int(v))
+    else:
+        return 'mzn_quote(). Error unknown type'
+
+
 def idr_query(sql_query, return_data):
     assert return_data in ['data', 'markdown table', 'model', 'constrained model']
 
@@ -95,7 +106,6 @@ def idr_query(sql_query, return_data):
                 continue
             too_complex = True
             continue
-
     canonical_table_name = table_name.lower()
     model = idr_read_model(canonical_table_name)
     if return_data == 'model':
@@ -103,26 +113,30 @@ def idr_query(sql_query, return_data):
     # Merge in the constraints in the query to get the model to be fed to MiniZinc
 
     parameters = re.search(r"predicate +" + canonical_table_name + r" *\(([^)]+?)\)", model, re.S)[1].lower()
-    typed_parameters_list = [[y.lower().replace('var','').strip() for y in x.split(":")] for x in parameters.split(",")]
+    typed_parameters_list = [[y.lower().replace('var', '').strip() for y in x.split(":")] for x in
+                             parameters.split(",")]
     variables = parameters.replace(",", ";") + ";"
     primary_constraint = 'constraint ' + canonical_table_name + '(' + ', '.join(
         [x.split(":")[1] for x in parameters.split(",")]) + ');'
-
-    where_clause_data = '; '.join([(x + "= true" if len(x.split("=")) == 1 else x) for x in
-                                   where_clause.lower().replace("where", "").split("and")]) if where_clause else ''
-    constrained_model = model + "\n" + variables + "\n" + primary_constraint + "\n" + (where_clause_data + ";" if where_clause_data else '')
+    where_clause_data = '; '.join(
+        [k + " = " + mzn_quote(k, v, dict([(k, v) for v, k in typed_parameters_list])) for k, v in
+         eq_constraints.items()])
+    constrained_model = model + "\n" + variables + "\n" + primary_constraint + "\n" + (
+        where_clause_data + ";" if where_clause_data else '')
     model_fn = tempfile.NamedTemporaryFile().name
     mf = open(model_fn + ".mzn", 'w')
     mf.write(constrained_model)
     mf.close()
+
+    if return_data == 'constrained model':
+        return constrained_model
 
     schema_cols = {}
     for c in typed_parameters_list:
         schema_cols[c[1]] = c[0]
     schema = {canonical_table_name: schema_cols}
 
-    if return_data == 'constrained model':
-        return constrained_model
+
 
     # Run MiniZinc model and save result, starting with the opitmathsat solver
     path_to_minizinc = "C:/Program Files/MiniZinc/minizinc" if sys.platform.startswith('win32') else "/usr/bin/minizinc"
@@ -147,7 +161,7 @@ def idr_query(sql_query, return_data):
                 pass
             else:
                 x = line.replace(";", "").split("=")
-                column.append('"' + x[0].strip() + '": ' + x[1].strip())
+                column.append('"' + x[0].strip() + '": ' + (x[1].strip() if x[1].strip() != '-0.0' else '0.0'))
     solver_data = json.loads('[' + ', '.join(data_output) + ']')
 
     # and if there is no result, then try with optimathsat
@@ -193,4 +207,3 @@ def idr_query(sql_query, return_data):
             ['|' + '|'.join([str(val) for val in r]) + '|' for r in res.rows])
     else:
         return 'Programming error - this should never occur'
-

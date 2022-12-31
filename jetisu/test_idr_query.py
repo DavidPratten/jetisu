@@ -10,6 +10,11 @@ def test_idr_d750d38a4a():
 """, 'data')
     assert sorted_res(res) == sorted_res((('price', 'duty'), [(1200000.0, 47590)]))
 
+def test_idr_0a5180a61c():
+    res = idr_query("""select price, duty from ACT_Conveyance_Duty where price = 1200000 and not non_commercial;
+""", 'data')
+    assert sorted_res(res) == sorted_res((('price', 'duty'), [(1200000.0, 0.0)]))
+
 
 def test_idr_65378a8e35():
     res = idr_query("""select eligible_owner_occupier, duty
