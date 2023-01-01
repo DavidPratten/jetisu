@@ -121,8 +121,9 @@ def idr_query(sql_query, return_data):
     where_clause_data = '; '.join(
         [k + " = " + mzn_quote(k, v, dict([(k, v) for v, k in typed_parameters_list])) for k, v in
          eq_constraints.items()])
+    output_statement = 'output ["' + "\\n".join([k+" = \\("+k+")" for v, k in typed_parameters_list])+'"];'
     constrained_model = model + "\n" + variables + "\n" + primary_constraint + "\n" + (
-        where_clause_data + ";" if where_clause_data else '')
+        where_clause_data + ";" if where_clause_data else '') + "\n"+ output_statement
     model_fn = tempfile.NamedTemporaryFile().name
     mf = open(model_fn + ".mzn", 'w')
     mf.write(constrained_model)
