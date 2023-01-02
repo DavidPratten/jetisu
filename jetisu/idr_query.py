@@ -12,6 +12,7 @@ import tempfile
 
 from sqlglot import exp, parse_one
 from sqlglot.executor import execute
+from sqlglot.optimizer.lower_identities import lower_identities
 
 
 def idr_read_model(canonical_table_name):
@@ -44,7 +45,10 @@ def idr_query(sql_query, return_data):
     too_complex = False
     eq_constraints = {}
 
-    for node_tuple in parse_one(sql_query).walk(bfs=False):
+    # see https://github.com/tobymao/sqlglot/blob/638ed265f195219d7226f4fbae128f1805ae8988/sqlglot/optimizer/lower_identities.py
+    # Assuming the schema is all lower case, this essentially makes identifiers case-insensitive.
+    # Implication for MiniZinc is that all parameters MUST be lowercase.
+    for node_tuple in lower_identities(parse_one(sql_query)).walk(bfs=False):
         if isinstance(node_tuple[0], exp.Identifier):
             # for current purposes the Identifiers may be ignored.
             continue
@@ -78,13 +82,13 @@ def idr_query(sql_query, return_data):
                 found_not = True
                 continue
             if isinstance(node_tuple[0], exp.Column):
-                eq_constraints[str(node_tuple[0]).lower()] = True
+                eq_constraints[str(node_tuple[0])] = True
                 continue
             too_complex = True
             continue
         if found_constraints and found_eq and column_name == '':
             if isinstance(node_tuple[0], exp.Column):
-                column_name = str(node_tuple[0]).lower()
+                column_name = str(node_tuple[0])
                 continue
             too_complex = True
             continue
@@ -101,19 +105,20 @@ def idr_query(sql_query, return_data):
             continue
         if found_constraints and found_not:
             if isinstance(node_tuple[0], exp.Column):
-                eq_constraints[str(node_tuple[0]).lower()] = False
+                eq_constraints[str(node_tuple[0])] = False
                 found_not = False
                 continue
             too_complex = True
             continue
-    canonical_table_name = table_name.lower()
+    canonical_table_name = table_name
     model = idr_read_model(canonical_table_name)
     if return_data == 'model':
         return model
     # Merge in the constraints in the query to get the model to be fed to MiniZinc
 
-    parameters = re.search(r"predicate +" + canonical_table_name + r" *\(([^)]+?)\)", model, re.S)[1].lower()
-    typed_parameters_list = [[y.lower().replace('var', '').strip() for y in x.split(":")] for x in
+    # Minizinc "predicate and predicate name and var and var names must be lower-case
+    parameters = re.search(r"predicate +" + canonical_table_name + r" *\(([^)]+?)\)", model, re.S)[1]
+    typed_parameters_list = [[y.replace('var', '').strip() for y in x.split(":")] for x in
                              parameters.split(",")]
     variables = parameters.replace(",", ";") + ";"
     primary_constraint = 'constraint ' + canonical_table_name + '(' + ', '.join(
@@ -191,7 +196,7 @@ def idr_query(sql_query, return_data):
         table_input = {canonical_table_name: []}
     else:
         # Put output into a list of dict as data ready to run
-        table_input = {table_name.lower(): [x | eq_constraints for x in solver_data]}  # | eq_constraints
+        table_input = {table_name: [x | eq_constraints for x in solver_data]}  # | eq_constraints
 
     # Run the query
     res = execute(
