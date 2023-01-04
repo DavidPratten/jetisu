@@ -8,6 +8,8 @@ The examples are chosen to illustrate the benefits (and/or challenges) of using 
 - [ACT Conveyance Duty](ACT_Conveyance_Duty.ipynb)
 - [Australian GST](Australian_GST.ipynb)
 - [Birthday Money](Birthday%20Money.ipynb)
+- [Australian COVID vaccinations up-to-date and eligibility](COVID_vaccinations.ipynb)
+- [Australian COVID vaccinations mandatory for work roles](COVID_vaccinations_and_work.ipynb)
 - [Range](Range.ipynb)
 ## Edit and re-run the example notebooks
 You can  ```docker run``` the example Jupyter notebooks for yourself.

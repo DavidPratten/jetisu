@@ -22,7 +22,7 @@ def idr_read_model(canonical_table_name):
 def idr_test_res_sort(res):
     return (res[0], sorted(res[1], key=lambda element: "".join([str(x) for x in element])))
 
-def mzn_quote(k, v, typed_parameters_dict):
+def mzn_input_quote(k, v, typed_parameters_dict):
     if typed_parameters_dict[k] == 'bool':
         return str(v).lower()
     elif typed_parameters_dict[k] == 'float':
@@ -30,8 +30,13 @@ def mzn_quote(k, v, typed_parameters_dict):
     elif typed_parameters_dict[k] == 'int':
         return str(int(v))
     else:
-        return 'mzn_quote(). Error unknown type'
+        return str(v)  # enum's assumed to be varchar/string
 
+def mzn_output_quote(k, v, typed_parameters_dict):
+    if 'enum' in typed_parameters_dict[k]:
+        return '"'+v+'"'
+    else:
+        return v
 
 def idr_query(sql_query, return_data):
     assert return_data in ['data', 'markdown table', 'model', 'constrained model']
@@ -98,7 +103,7 @@ def idr_query(sql_query, return_data):
             if isinstance(node_tuple[0], exp.Literal):
                 # print(node_tuple[0].is_string, str(node_tuple[0]))
 
-                eq_constraints[column_name] = str(node_tuple[0]) if node_tuple[0].is_string else float(
+                eq_constraints[column_name] = str(node_tuple[0]).replace("'", "") if node_tuple[0].is_string else float(
                     str(node_tuple[0]))
                 found_eq = False
                 column_name = ''
@@ -126,7 +131,7 @@ def idr_query(sql_query, return_data):
     primary_constraint = 'constraint ' + canonical_table_name + '(' + ', '.join(
         [x.split(":")[1] for x in parameters.split(",")]) + ');'
     where_clause_data = '; '.join(
-        [k + " = " + mzn_quote(k, v, dict([(k, v) for v, k in typed_parameters_list])) for k, v in
+        [k + " = " + mzn_input_quote(k, v, dict([(k, v) for v, k in typed_parameters_list])) for k, v in
          eq_constraints.items()])
     output_statement = 'output ["' + "\\n".join([k+" = \\("+k+")" for v, k in typed_parameters_list])+'"];'
     constrained_model = model + "\n" + variables + "\n" + primary_constraint + "\n" + (
@@ -141,7 +146,7 @@ def idr_query(sql_query, return_data):
 
     schema_cols = {}
     for c in typed_parameters_list:
-        schema_cols[c[1]] = c[0]
+        schema_cols[c[1]] = c[0] if c[0] in {'bool', 'float', 'int'} else 'varchar'
     schema = {canonical_table_name: schema_cols}
 
 
@@ -162,14 +167,16 @@ def idr_query(sql_query, return_data):
         if data:
             if line == "% allsat model":
                 column = []
+            elif "UNSATISFIABLE" in line:
+                pass
             elif line == "----------":
-
                 data_output.append('{' + ', '.join(column) + '}')
             elif line == "==========":
                 pass
             else:
                 x = line.replace(";", "").split("=")
-                column.append('"' + x[0].strip() + '": ' + (x[1].strip() if x[1].strip() != '-0.0' else '0.0'))
+                column.append('"' + x[0].strip() + '": ' + (mzn_output_quote(x[0].strip(), x[1].strip(), dict([(k, v) for v, k in typed_parameters_list])) if x[1].strip() != '-0.0' else '0.0'))
+    # print('data_output', data_output)
     solver_data = json.loads('[' + ', '.join(data_output) + ']')
 
     # and if there is no result, then try with optimathsat
@@ -187,9 +194,12 @@ def idr_query(sql_query, return_data):
                 column = []
             elif line == "==========":
                 pass
+            elif "UNSATISFIABLE" in line:
+                pass
             else:
                 x = line.replace(";", "").split("=")
-                column.append('"' + x[0].strip() + '": ' + x[1].strip())
+                column.append('"' + x[0].strip() + '": ' + mzn_output_quote(x[0].strip(), x[1].strip(), dict([(k, v) for v, k in typed_parameters_list])))
+
         solver_data = json.loads('[' + ', '.join(data_output) + ']')
 
     os.remove(model_fn + ".mzn")
