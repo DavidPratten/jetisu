@@ -33,7 +33,7 @@ The idea of a relation that is defined by computable constraints and rules goes 
 
 __Algorithmic relations__ were proposed in 1975 by Patrick Hall, Peter Hitchcock and Stephen Todd. __Computed relations__ were described in 1981 by David Maier and David Warren. These proposals share a common assumption that computation is inherently directed. And, neither imagined that an algorithmic, or computed relation could be defined in such a way that all directions of computation might be supported automatically.
 
-The maturation of satisfaction solvers and of the constraint language [MiniZinc](https://www.minizinc.org) have provided the building blocks for realising ideas that were put forward nearly 50 years ago. The Jetisu project calls dubs these relations which are algorithmic or computed to be "intensionally defined".
+The maturation of satisfaction solvers and of the constraint language [MiniZinc](https://www.minizinc.org) have provided the building blocks for realising ideas that were put forward nearly 50 years ago. The Jetisu project calls these relations, which are algorithmic or computed, "intensionally defined relations".
 
 ## Built With Open Source Software
 * [sqlglot](https://github.com/tobymao/sqlglot)
