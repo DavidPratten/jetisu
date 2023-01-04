@@ -19,6 +19,8 @@ def idr_read_model(canonical_table_name):
     with open('jetisu/' + canonical_table_name + '.mzn', 'r') as file:
         return file.read()
 
+def idr_test_res_sort(res):
+    return (res[0], sorted(res[1], key=lambda element: "".join([str(x) for x in element])))
 
 def mzn_quote(k, v, typed_parameters_dict):
     if typed_parameters_dict[k] == 'bool':

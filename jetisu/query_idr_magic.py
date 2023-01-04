@@ -10,7 +10,7 @@ def jetisu_query(line, cell):
 def jetisu_testcase(line, cell):
     print("""def test_idr_""" + hashlib.sha1(cell.strip().encode()).hexdigest()[:10] + """():
     res = idr_query(\"\"\"""" + cell + """\"\"\", 'data')
-    assert sorted_res(res) == sorted_res(""" + str(idr_query(cell, 'data')) + """)""")
+    assert idr_test_res_sort(res) == idr_test_res_sort(""" + str(idr_query(cell, 'data')) + """)""")
 
 
 def jetisu_show(line, cell):
