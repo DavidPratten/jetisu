@@ -31,12 +31,24 @@ are defined in the same way!
 
 The idea of a relation that is defined by computable constraints and rules goes back to the 1970's and 1980's of the database era. Early references include:
 
-- __Algorithmic relations__ were proposed in 1975 by Patrick Hall, Peter Hitchcock and Stephen Todd. 
-- __Computed relations__ were described in 1981 by David Maier and David Warren. 
+- __Algorithmic relations__ proposed in 1975 by Patrick Hall, Peter Hitchcock and Stephen Todd. 
+- __Computed relations__ described in 1981 by David Maier and David Warren. 
 
 These proposals share a common assumption that computation is inherently directed. Neither paper suggested that an algorithmic, or computed relation could be defined in such a way that all directions of computation might be possible "out-of-the-box" with just a single definition.
 
 The maturation of satisfaction solvers and of the constraint language [MiniZinc](https://www.minizinc.org) have provided the building blocks for realising ideas that were put forward nearly 50 years ago. The Jetisu project calls these relations, which are algorithmic or computed, "intensionally defined relations".
+
+## Theory of intensionally defined relations
+An __intensionally defined relation__ is 
+- a set of typed attributes (or columns) A, along with
+- a set of declarative and computable satisfaction constraints C, which
+- when further constrained in a relational query, is indistinguishable, (within some error bound 𝜖), from its finite extension of tuples (rows).
+
+Beyond this basic definition, here are some additional observations that may assist the reader:
+
+__Intimate connection between the constraints in the definition and the ```WHERE``` clause in the query:__ A key implication of the above definition is that the relational ```σ``` operator (```WHERE``` clause in SQL) contains constraints that may be pushed down into the definition of the relation prior to scanning the rows in the relation, rather than being applied as a filter after retrieving the rows from the relation. 
+
+__Technology agnostic:__ While it is convenient to use MiniZinc to define a relation's intension, it is not required. Any language, or system, that supports the above definitions may be used.  As to the relational query language, it is convenient to use SQL, but the same queries could easily also be formulated in Datalog or other equivalent query language.
 
 ## Built With Open Source Software
 * [sqlglot](https://github.com/tobymao/sqlglot)
