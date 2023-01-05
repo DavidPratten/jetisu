@@ -29,7 +29,7 @@ are defined in the same way!
 | Extensionally defined | Natural Language                                                  | __Listed out in a table__         |
 | Intensionally defined | __Computable Constraints and Rules__                              | Generated or recognised on demand |
 
-The idea of a relation that is defined by computable constraints and rules goes back to the 1970's and 1980's of the database era. Early references include:
+The idea of a relation that is defined by computable constraints and rules goes back to the 1970's and 1980's at the beginning of the relational database era. Early references include:
 
 - __Algorithmic relations__ proposed in 1975 by Patrick Hall, Peter Hitchcock and Stephen Todd. 
 - __Computed relations__ described in 1981 by David Maier and David Warren. 
