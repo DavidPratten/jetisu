@@ -44,9 +44,9 @@ An __intensionally defined relation__ is
 - a set of declarative and computable satisfaction constraints C, which
 - when further constrained in a relational query, is indistinguishable, (within some error bound 𝜖), from its finite extension of tuples (rows).
 
-Beyond this basic definition, here are some additional observations that may assist the reader:
+This definition closely mirrors the definition of a relation in relational database theory, and here are some implications of this definition:
 
-__Intimate connection between the constraints in the definition and the ```WHERE``` clause in the query:__ A key implication of the above definition is that the relational ```σ``` operator (```WHERE``` clause in SQL) contains constraints that may be pushed down into the definition of the relation prior to scanning the rows in the relation, rather than being applied as a filter after retrieving the rows from the relation. 
+__Intimate connection between the constraints in the definition and the ```WHERE``` clause in the query:__ A key implication of the above definition is that the relational ```σ``` operator (```WHERE``` clause in SQL) contains constraints that may be pushed down into the definition of the relation prior to retrieving the rows in the relation, rather than being applied as a filter after retrieving the rows from the relation. 
 
 __Technology agnostic:__ While it is convenient to use MiniZinc to define a relation's intension, it is not required. Any language, or system, that supports the above definitions may be used.  As to the relational query language, it is convenient to use SQL, but the same queries could easily also be formulated in Datalog or other equivalent query language.
 
