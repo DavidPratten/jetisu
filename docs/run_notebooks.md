@@ -6,7 +6,7 @@ Here is a step by step guide to running and/or edit and re-running the example [
 ```shell
 docker run -p 8888:8888 ghcr.io/davidpratten/jetisu:latest
 ```
-- To open a Jupyter lab browser window like the one below, follow the launch instructions in terminal: 
+- To open a Jupyter lab browser window like the one below, follow the launch instructions provided by docker in the terminal window: 
 
 <img src="launch_jupyter.png" width="500"/>
 
