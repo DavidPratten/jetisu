@@ -7,7 +7,7 @@ Here is a step by step guide to running and/or edit and re-running the example [
 docker run -p 8888:8888 ghcr.io/davidpratten/jetisu:latest
 ```
 - To open a Jupyter lab browser window like the one below, follow the launch instructions in terminal: 
-![Launch Jupyter Example](launch_jupyter.png|width=717)
+![Launch Jupyter Example](launch_jupyter.png | width=717)
 - Double-click on any notebook to edit and/or re-run the examples.
 
 - See here for [Jupyter Notebook Help](https://jupyter-notebook.readthedocs.io/en/stable/notebook.html)
