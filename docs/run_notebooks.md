@@ -8,7 +8,7 @@ docker run -p 8888:8888 ghcr.io/davidpratten/jetisu:latest
 ```
 - To open a Jupyter lab browser window like the one below, follow the launch instructions in terminal: 
 
-<img src="launch_jupyter.png" width="300"/>
+<img src="launch_jupyter.png" width="717"/>
 
 - Double-click on any notebook to edit and/or re-run the examples.
 
