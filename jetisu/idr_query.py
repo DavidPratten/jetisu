@@ -9,6 +9,7 @@ import re
 import subprocess
 import sys
 import tempfile
+import math
 
 from sqlglot import exp, parse_one
 from sqlglot.executor import execute
@@ -37,6 +38,11 @@ def mzn_output_quote(k, v, typed_parameters_dict):
         return '"'+v+'"'
     else:
         return v
+
+def sqlglot_table2md(res):
+    return '|' + '|'.join(res.columns) + '|' + "\n" + '|' + '|'.join(
+            ["----" for x in res.columns]) + '|' + "\n" + "\n".join(
+            ['|' + '|'.join([str(val) for val in r]) + '|' for r in res.rows])
 
 def idr_query(sql_query, return_data):
     assert return_data in ['raw', 'data', 'markdown table', 'model', 'constrained model']
@@ -221,8 +227,85 @@ def idr_query(sql_query, return_data):
     elif return_data == 'data':
         return res.columns, res.rows
     elif return_data == 'markdown table':
-        return '|' + '|'.join(res.columns) + '|' + "\n" + '|' + '|'.join(
-            ["----" for x in res.columns]) + '|' + "\n" + "\n".join(
-            ['|' + '|'.join([str(val) for val in r]) + '|' for r in res.rows])
+        return sqlglot_table2md(res)
     else:
         return 'Programming error - this should never occur'
+
+def jetisu_goal_directed(goal_list, table_name):
+    tables = {table_name: idr_query(f"select * from {table_name};", 'raw')}
+    where_condition = ''
+    residual_columns_list = []
+    while not residual_columns_list:
+        goal_list, tables, where_condition, residual_columns_list = jetisu_ask_next_question(goal_list, tables, where_condition)
+    return tables, where_condition, residual_columns_list
+
+def jetisu_ask_next_question(goal_list, tables, where_condition, residual_columns=''):
+    table_name = list(tables.keys())[0]
+    schema = tables[table_name].columns
+    search_prompt = f"Finding {', '.join(goal_list)}"
+    search_over_list = set(schema) - set(goal_list)
+    cross_product_ratio = {}  # 1 = cross product, higher is better
+    randomness_proxy = {}  # 1 = apparently random, higher is better
+    effectiveness_ratio = {}
+
+    res_goal = execute(f"select count(*) from (select distinct {', '.join(goal_list)} from {table_name})",
+                       tables=tables)
+    res_search_over = execute(f"select count(*) from (select distinct {', '.join(search_over_list)} from {table_name})",
+                       tables=tables)
+    if res_goal.rows[0][0] == 1 or res_search_over.rows[0][0] == 1:
+        # found solution
+        # tables contains residual cases which to which the relation is indifferent
+        return goal_list, tables, where_condition, search_over_list
+
+    for q in search_over_list:
+        other_columns = set(schema) - set((q,))
+        # do the count of distinct for q and for other cols take the division and save it.jetisu_ask_next_question
+        res_all = execute(f"select count(*) from {table_name}", tables=tables)
+        res_q_and_goal = execute(
+            f"select count(*) from (select distinct {', '.join(goal_list + [q])} from {table_name})", tables=tables)
+        res_q = execute(f"select count(*) from (select distinct {q} from {table_name})", tables=tables)
+        res_other = execute(f"select count(*) from (select distinct {', '.join(other_columns)} from {table_name})",
+                            tables=tables)
+        # for cross product this will be 1, for primary key this will be N the cardinality of the table.
+        cross_product_ratio[q] = (res_q.rows[0][0] * res_goal.rows[0][0]) / res_q_and_goal.rows[0][
+            0]  # / (1+res_all.rows[0][0]-res_q_and_goal.rows[0][0])
+
+        # calculate sum of squares
+        res_sum_of_squares = execute(
+            f"select sum(sos) ssos from (select {q}, count(*)*count(*) sos from {table_name} group by {q})",
+            tables=tables)
+        randomness_proxy[q] = math.sqrt(res_sum_of_squares.rows[0][0]) / math.sqrt(
+            res_all.rows[0][0] * pow(res_all.rows[0][0] / res_q.rows[0][0], 2))
+
+        effectiveness_ratio[q] = cross_product_ratio[q] * randomness_proxy[q] * res_q.rows[0][0]
+    sortedq = sorted(effectiveness_ratio.items(), key=lambda x: x[1], reverse=True)
+    chosen_q = sortedq[0][0]
+    chosen_other_columns = set(schema) - set((chosen_q,))
+    qlist = execute(f"select distinct {chosen_q} from {table_name}", tables=tables).rows
+    enumerated_qlist = enumerate(qlist, start=1)
+    prompt = '\n'.join([f"{x}) {y[0]}" for (x, y) in enumerated_qlist])
+    response_valid = False
+    while not response_valid:
+        response = input(f"{search_prompt}\n{chosen_q}?\n{prompt}")
+        if response == '':
+            return "Search Cancelled ..."
+        try:
+            response_int = int(response)
+        except ValueError:
+            continue
+        if response_int >= 1 and response_int <= len(qlist):
+            response_valid = True
+            chosen_where_condition = where_condition + (" and " if where_condition else '')
+            this_where_condition = f"{chosen_q}" if str(qlist[response_int - 1][0]) == "True" else (
+                    f"not {chosen_q}" if str(
+                        qlist[response_int - 1][0]) == "False" else (f"{chosen_q}={qlist[response_int - 1][0]}" if (
+                        isinstance(qlist[response_int - 1][0], int) or isinstance(qlist[response_int - 1][0],
+                                                                                  float)) else f"{chosen_q}='{qlist[response_int - 1][0]}'"))
+            chosen_where_condition += this_where_condition
+
+    retdata = execute(
+        f"select distinct {', '.join(chosen_other_columns)} from {table_name} where {this_where_condition}",
+        tables=tables)
+
+    chosen_tables = {table_name: retdata}
+    return goal_list, chosen_tables, chosen_where_condition, False
