@@ -6,7 +6,7 @@ Jetisu is a toolset for modelling with __intensionally defined relations__.
 Jetisu is understood to be the first implementation of intensionally defined relations. If you are aware of an earlier implementation, please raise an issue.
 
 ## Querying Rules As Code
-The examples are chosen to illustrate the benefits (and/or challenges) of using intensionally defined relations to model rules as code.
+The examples are chosen to illustrate the benefits (and/or challenges) of querying intensionally defined relations to model rules as code.
 - [ACT Conveyance Duty](ACT_Conveyance_Duty.ipynb)
 - [Australian GST](Australian_GST.ipynb)
 - [Birthday Money](Birthday%20Money.ipynb)
@@ -15,8 +15,8 @@ The examples are chosen to illustrate the benefits (and/or challenges) of using 
 - [Range](Range.ipynb)
 
 ## Interactive Q&A with Rules as Code
-This example shows user Q&A using the same rule-set as the above "Australian COVID vaccinations mandatory for work roles" example:
-- [Tell me my status for mandatory vaccinations](Goal_seeking_covid_vaccination_and_work.ipynb)
+This example shows interactive Q&A using the same rule-set as the above "Australian COVID vaccinations mandatory for work roles" example:
+- [Am I required to have COVID vaccinations?](Goal_seeking_covid_vaccination_and_work.ipynb)
 
 ## Edit and re-run the example notebooks
 You can  ```docker run``` the example Jupyter notebooks for yourself.
