@@ -289,7 +289,7 @@ def jetisu_ask_next_question(goal_list, tables, where_condition, residual_column
     while not response_valid:
         response = input(f"{chosen_q}?\n{prompt}")
         if response == '':
-            return "Search Cancelled ..."
+            return None, None, None, ["Quit"]
         try:
             response_int = int(response)
         except ValueError:

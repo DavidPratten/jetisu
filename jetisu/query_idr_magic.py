@@ -33,20 +33,22 @@ def jetisu_seek_goal(line, cell):
     goal_list = request["goal_list"]
     table_name = request["table_name"]
     tables, where_condition, residual_columns_list = jetisu_goal_directed(goal_list, table_name)
-    answer = "## Answer\n"+sqlglot_table2md(execute(f"select distinct {', '.join(goal_list)} from {table_name}", tables=tables))
-    answer += f"\n### Because\n{where_condition}\n"
-    answer += "\n### Along the way, the following additional values were determined:\n"
-    for col in residual_columns_list:
-        res = execute(f"select distinct {col} from {table_name}", tables=tables)
-        if len(res.rows) == 1:
-            answer += sqlglot_table2md(res)+"\n\n"
-    answer += "\n### And the following values were under-determined:\n"
-    for col in residual_columns_list:
-        res = execute(f"select distinct {col} from {table_name}", tables=tables)
-        if len(res.rows) > 1:
-            answer += sqlglot_table2md(res)+"\n\n"
-    display(Markdown(answer))
-
+    if list(residual_columns_list)[0] != "Quit":
+        answer = "## Answer\n"+sqlglot_table2md(execute(f"select distinct {', '.join(goal_list)} from {table_name}", tables=tables))
+        answer += f"\n### Because\n{where_condition}\n"
+        answer += "\n### Along the way, the following additional values were determined:\n"
+        for col in residual_columns_list:
+            res = execute(f"select distinct {col} from {table_name}", tables=tables)
+            if len(res.rows) == 1:
+                answer += sqlglot_table2md(res)+"\n\n"
+        answer += "\n### And the following values were under-determined:\n"
+        for col in residual_columns_list:
+            res = execute(f"select distinct {col} from {table_name}", tables=tables)
+            if len(res.rows) > 1:
+                answer += sqlglot_table2md(res)+"\n\n"
+        display(Markdown(answer))
+    else:
+        print("Q&A cancelled.")
 def load_ipython_extension(ipython):
     """This function is called when the extension is
     loaded. It accepts an IPython InteractiveShell
