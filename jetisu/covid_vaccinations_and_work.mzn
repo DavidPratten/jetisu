@@ -18,6 +18,7 @@ constraint disability_worker_in_school -> (work_sector = education);
 constraint specialist_school -> (work_sector = education);
 constraint aged_care_facility -> (work_sector = aged_care);
 constraint nsw_health_worker -> (work_sector = healthcare /\ work_location = new_south_wales);
+constraint private_home_only -> (work_sector != custodial);
 constraint covid_vaccination_work_recommended_doses =
   if work_location = new_south_wales then
     if work_sector = education then
