@@ -232,9 +232,11 @@ def idr_query(sql_query, return_data):
         return 'Programming error - this should never occur'
 
 def jetisu_goal_directed(goal_list, table_name):
+    search_prompt = f"Finding {', '.join(goal_list)}, please answer the following questions ...\n"
     tables = {table_name: idr_query(f"select * from {table_name};", 'raw')}
     where_condition = ''
     residual_columns_list = []
+    print(f"{search_prompt}\n")
     while not residual_columns_list:
         goal_list, tables, where_condition, residual_columns_list = jetisu_ask_next_question(goal_list, tables, where_condition)
     return tables, where_condition, residual_columns_list
@@ -242,7 +244,6 @@ def jetisu_goal_directed(goal_list, table_name):
 def jetisu_ask_next_question(goal_list, tables, where_condition, residual_columns=''):
     table_name = list(tables.keys())[0]
     schema = tables[table_name].columns
-    search_prompt = f"Finding {', '.join(goal_list)}"
     search_over_list = set(schema) - set(goal_list)
     cross_product_ratio = {}  # 1 = cross product, higher is better
     randomness_proxy = {}  # 1 = apparently random, higher is better
@@ -286,7 +287,7 @@ def jetisu_ask_next_question(goal_list, tables, where_condition, residual_column
     prompt = '\n'.join([f"{x}) {y[0]}" for (x, y) in enumerated_qlist])
     response_valid = False
     while not response_valid:
-        response = input(f"{search_prompt}\n{chosen_q}?\n{prompt}")
+        response = input(f"{chosen_q}?\n{prompt}")
         if response == '':
             return "Search Cancelled ..."
         try:
