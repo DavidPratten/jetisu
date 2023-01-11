@@ -236,7 +236,7 @@ def jetisu_goal_directed(goal_list, table_name):
     tables = {table_name: idr_query(f"select * from {table_name};", 'raw')}
     where_condition = ''
     residual_columns_list = []
-    print(f"{search_prompt}\n")
+    print(f"{search_prompt}")
     while not residual_columns_list:
         goal_list, tables, where_condition, residual_columns_list = jetisu_ask_next_question(goal_list, tables, where_condition)
     return tables, where_condition, residual_columns_list
@@ -287,7 +287,7 @@ def jetisu_ask_next_question(goal_list, tables, where_condition, residual_column
     prompt = '\n'.join([f"{x}) {y[0]}" for (x, y) in enumerated_qlist])
     response_valid = False
     while not response_valid:
-        response = input(f"{chosen_q}?\n{prompt}")
+        response = input(f"\n{chosen_q}?\n{prompt}")
         if response == '':
             return None, None, None, ["Quit"]
         try:
