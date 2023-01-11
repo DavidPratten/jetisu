@@ -39,7 +39,7 @@ def mzn_output_quote(k, v, typed_parameters_dict):
         return v
 
 def idr_query(sql_query, return_data):
-    assert return_data in ['data', 'markdown table', 'model', 'constrained model']
+    assert return_data in ['raw', 'data', 'markdown table', 'model', 'constrained model']
 
     # handles a conjuction of simple constraint clauses only TODO Generalise this code.
     table_name = ''
@@ -216,8 +216,9 @@ def idr_query(sql_query, return_data):
         schema=schema,
         tables=table_input
     )
-
-    if return_data == 'data':
+    if return_data == 'raw':
+        return res
+    elif return_data == 'data':
         return res.columns, res.rows
     elif return_data == 'markdown table':
         return '|' + '|'.join(res.columns) + '|' + "\n" + '|' + '|'.join(
