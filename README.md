@@ -41,7 +41,7 @@ The idea of a relation that is defined by computable constraints and rules goes 
 
 These proposals share a common assumption that computation is inherently directed. Neither paper suggested that an algorithmic, or computed relation could be defined in such a way that all directions of computation might be possible "out-of-the-box" with just a single definition.
 
-The maturation of satisfaction solvers and of the constraint language [MiniZinc](https://www.minizinc.org) have provided the building blocks for realising ideas that were put forward nearly 50 years ago. The Jetisu project calls these relations, which are algorithmic or computed, "intensionally defined relations".
+The maturation of satisfaction solvers and of the constraint language [MiniZinc](https://www.minizinc.org) have provided the building blocks for realising ideas that were put forward nearly 50 years ago. The Jetisu toolkit calls these algorithmic, or computed, relations: "intensionally defined relations".
 
 ## Theory of intensionally defined relations
 An __intensionally defined relation__ is 
