@@ -3,7 +3,7 @@ Jetisu is a toolset for modelling with __intensionally defined relations__.
 - a "__relation__" is a table with columns and rows,
 - "__intensionally defined__" means the the table is defined by computable rules rather than by a list of rows.
 
-Jetisu is understood to be the first implementation of intensionally defined relations. If you are aware of an earlier implementation, please raise an issue.
+Jetisu is understood to be the [first implementation of intensionally defined relations](docs/first_implementation.md). If you are aware of an earlier implementation, please raise an issue.
 
 ## Querying Rules As Code
 The examples are chosen to illustrate the benefits (and/or challenges) of querying intensionally defined relations to model rules as code.
