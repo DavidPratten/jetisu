@@ -65,7 +65,7 @@ __Technology agnostic:__ While it is convenient to use [MiniZinc](https://www.mi
 * [Python](https://www.python.org/)
 
 ## Acknowledgements
-The Jetisu project has been helped along by inspiration from
+The Jetisu toolkit has been helped along by inspiration from
 * [Prolog](https://athena.ecs.csus.edu/~mei/logicp/Programming_in_Prolog.pdf)
 * [Tutorial D](https://www.dcs.warwick.ac.uk/~hugh/TTM/)
 * [Picat](http://www.picat-lang.org/) 
