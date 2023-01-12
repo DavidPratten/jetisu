@@ -1,9 +1,9 @@
 # First implementation of intensionally defined relations
-We know that intensionally defined (computed or algorithmic relations) were conceived of in the mid'70s and early 80s, but for some reason the idea never took off. 
+We know that intensionally defined (i.e. computed or algorithmic) relations were conceived of in the mid'70s and early 80s, but for some reason the idea never took off. 
 
 As unlikely as it seems, there does not appear to be any implementations of intensionally defined relations prior to the Jetisu toolkit. 
 
-This is a testable claim. What would it take for a system to qualify as an earlier implementation?
+Please assist by testing this claim.
 
 ## What would qualify as an earlier implementation?
 An earlier implementation of
@@ -23,7 +23,7 @@ Conformance to this test may be demonstrated by defining the following relation 
 
 ```australian_gst(price, ex_gst_amount, gst_amount)```
 
-The following example tuple would belong to this relation:
+The following example tuple belongs to this relation:
 
 | **price** | **ex_gst_amount** | **gst_amount** |
 |---------|-------------------|----------------|
@@ -44,10 +44,10 @@ and get the following result each time.
 |-----------|-------------------|----------------|
 | **220**   | 200               | 20             |
 
-The Jetisu Toolkit's implementation of this relation is [here](..\Australian_GST.ipynb). 
+The Jetisu Toolkit's implementation of this relation is [here](../Australian_GST.ipynb). 
 
-## Seeking earlier examples
-Please raise an issue if you can point to an earlier implementation of
+## Have you seen this before?
+Please raise an issue if you can point to a prior implementation of
 - computed,
 - algorithmic, or
 - intensionally defined 
