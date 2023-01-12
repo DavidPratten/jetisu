@@ -36,8 +36,8 @@ are defined in the same way!
 
 The idea of a relation that is defined by computable constraints and rules goes back to the 1970's and 1980's at the beginning of the relational database era. Early references include:
 
-- __Algorithmic relations__ proposed in 1975 by Patrick Hall, Peter Hitchcock and Stephen Todd. 
-- __Computed relations__ described in 1981 by David Maier and David Warren. 
+- __Algorithmic relations__ proposed in 1975 by Patrick Hall, Peter Hitchcock and Stephen Todd. [PDF](https://dl.acm.org/doi/pdf/10.1145/512976.512998) 
+- __Computed relations__ described in 1981 by David Maier and David Warren. [PDF](https://dl.acm.org/doi/pdf/10.1145/582318.582345)
 
 These proposals share a common assumption that computation is inherently directed. Neither paper suggested that an algorithmic, or computed relation could be defined in such a way that all directions of computation might be possible "out-of-the-box" with just a single definition.
 
