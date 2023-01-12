@@ -46,7 +46,7 @@ The maturation of satisfaction solvers and of the constraint language [MiniZinc]
 ## Theory of intensionally defined relations
 An __intensionally defined relation__ is 
 - a set of typed attributes (or columns) A, along with
-- a set of declarative and computable satisfaction constraints C, which
+- a set of declarative and computable satisfaction constraints C over the attributes in A, which
 - when further constrained in a relational query, is indistinguishable, (within some error bound 𝜖), from its finite extension of tuples (rows).
 
 This definition closely mirrors the definition of a relation in relational database theory, and here are some implications of this definition:
