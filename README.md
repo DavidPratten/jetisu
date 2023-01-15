@@ -1,4 +1,7 @@
 # Jetisu
+
+<img align="right" width="100" height="100" src="images/jetisu_logo.png">
+
 Jetisu is a toolset for modelling with __intensionally defined relations__.
 - a "__relation__" is a table with columns and rows,
 - "__intensionally defined__" means the the table is defined by computable rules rather than by a list of rows.
