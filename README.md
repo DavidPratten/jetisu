@@ -37,6 +37,12 @@ are defined in the same way!
 | Extensionally defined | Natural Language                                                  | __Listed out in a table__         |
 | Intensionally defined | __Computable Constraints and Rules__                              | Generated or recognised on demand |
 
+Here is ChatGPT's response to the question "_please tell me  the difference between extensionally defined relations and intensionally defined relations_"
+> An extensional relation is defined based on the actual elements that are related, while an intensional relation is defined based on the properties 
+> or characteristics of the elements that are related. For example, "is the capital of" is an extensional relation because it is defined based on 
+> specific cities (e.g. "Paris is the capital of France"). On the other hand, "is taller than" is an intensional relation because it 
+> is defined based on the property of height (e.g. "John is taller than Jane").
+
 The idea of a relation that is defined by computable constraints and rules goes back to the 1970's and 1980's at the beginning of the relational database era. Early references include:
 
 - __Algorithmic relations__ proposed in 1975 by Patrick Hall, Peter Hitchcock and Stephen Todd. [(PDF)](https://dl.acm.org/doi/pdf/10.1145/512976.512998) 
