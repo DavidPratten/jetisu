@@ -15,6 +15,7 @@ The examples are chosen to illustrate the benefits (and/or challenges) of queryi
 - [Birthday Money](Birthday%20Money.ipynb)
 - [Australian COVID vaccinations up-to-date and eligibility](COVID_vaccinations.ipynb)
 - [Australian COVID vaccinations mandatory for work roles](COVID_vaccinations_and_work.ipynb)
+- [Eligibility for rates subsidy](eligible_for_rates_subsidy.ipynb)
 - [Range](Range.ipynb)
 
 ## Interactive Q&A with Rules as Code
