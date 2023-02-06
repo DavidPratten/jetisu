@@ -13,12 +13,12 @@ An earlier implementation of
 
 relations would have the following attributes.
 
-Given two intensionally-defined relations, `I` and `J` and an extensionally-defined relation D:
+Given two intensionally-defined relations, `I` and `J` and an extensionally-defined relation `D`:
 
 1. `I` and `J` are relations as understood in the Relational Algebra just as `D` is. 
 1. `I` and `J` may be queried by name using SQL, Relational Algebra, Datalog, or other [language that compiles to SQL](https://github.com/ajnsit/languages-that-compile-to-sql) just as `D` may. 
 1. And within relational queries over `I`, the implementation will allow the query to: 
-   1. constrain any, or all, attributes of `I` with the `σ (sigma)` relational algebraic operators, and
+   1. constrain any, or all, attributes of `I` with the `σ (sigma)` relational algebraic operator, and
    1. query `I` as a stand-alone relation, and
    1. query `I ⨝ (join) D`, and
    1. query `I ⨝ (join) J`
