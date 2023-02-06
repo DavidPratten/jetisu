@@ -13,7 +13,7 @@ One of the relational model's key benefits is that programmers were, to a greate
 
 The Jetisu Toolkit is exploring the possibility that the relational model can do for rules and code what it did for data. The following diagram is a representation of what this might look like:
 
-![img.png](images/doing for computation what rm did for data.png)
+<img width="50%" src="images/doing for computation what rm did for data.png">
 
 Jetisu is understood to be the [first implementation of intensionally defined relations](docs/first_implementation.md). If you are aware of an earlier implementation, please raise an issue.
 
