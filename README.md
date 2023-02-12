@@ -63,6 +63,8 @@ An __intensionally defined relation__ is
 
 This definition closely mirrors the definition of a relation in relational database theory, and here are some implications of this definition:
 
+__Not derived from other relations:__ An intensionally defined relation is a standalone computational artifact and not derived from other relations.
+
 __Intimate connection between the constraints in the definition and the ```WHERE``` clause in the query:__ A key implication of the above definition is that the relational algebra ```SELECT``` or ```σ``` operator (```WHERE``` clause in SQL) contains constraints that may be pushed down into the definition of the relation prior to retrieving the rows in the relation, rather than being applied as a filter after retrieving the rows from the relation.
 
 __Isolation of rules from data:__ Rules and data are kept in separate relations. The only connection between rules and data is mediated by a `join` `⨝` in a relational and possibly fixed-point query. This enables a "write rules once and use anywhere" philosophy.
