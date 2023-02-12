@@ -65,7 +65,7 @@ This definition closely mirrors the definition of a relation in relational datab
 
 __Intimate connection between the constraints in the definition and the ```WHERE``` clause in the query:__ A key implication of the above definition is that the relational algebra ```SELECT``` or ```σ``` operator (```WHERE``` clause in SQL) contains constraints that may be pushed down into the definition of the relation prior to retrieving the rows in the relation, rather than being applied as a filter after retrieving the rows from the relation.
 
-__Isolation of rules from data:__ The only connection between rules and data is mediated by a `join` `⨝` in a relational and possibly fixed-point query. This enables a "write rules once and use anywhere" philosophy.
+__Isolation of rules from data:__ Rules and data are kept in separate relations. The only connection between rules and data is mediated by a `join` `⨝` in a relational and possibly fixed-point query. This enables a "write rules once and use anywhere" philosophy.
 
 __Technology agnostic:__ While it is convenient to use [MiniZinc](https://www.minizinc.org) to define a relation's intension, it is not required. Any language, or system, that supports the above definitions may be used.  As to the relational query language, it is convenient to use SQL, but the same queries could easily also be formulated in Datalog or other relational query language.
 
