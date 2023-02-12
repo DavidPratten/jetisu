@@ -55,7 +55,7 @@ These proposals share a common assumption that computation is inherently directe
 
 The maturation of satisfaction solvers and of the constraint language [MiniZinc](https://www.minizinc.org) have provided the building blocks for realising ideas that were put forward nearly 50 years ago. The Jetisu toolkit calls these algorithmic, or computed, relations: "intensionally defined relations".
 
-## Theory of intensionally defined relations
+## A theory of intensionally defined relations
 An __intensionally defined relation__ is 
 - a set of typed attributes (or columns) A, along with
 - a computable predicate (or constraint) C over the attributes in A, which
