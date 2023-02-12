@@ -73,7 +73,7 @@ __Do not repeat yourself:__ The relational algebra is inherently agnostic to whi
 
 __Isolation of rules from data:__ Rules and data are kept in separate relations. The only connection between rules and data is by creating a derived relation using some variant of relational `join` `⨝`. This enables a "write rules once and use anywhere" philosophy.
 
-__Better together:__ The `natural join` `⨝` of two intensionally defined relations with common attributes has a stronger predicate over its attributes that the two relations taken separately.
+__Better together:__ The `natural join` `⨝` of two intensionally defined relations with common attributes has a stronger predicate over its attributes than the two relations taken separately.
 
 __Technology agnostic:__ While it is convenient to use [MiniZinc](https://www.minizinc.org) to define a relation's intension, it is not required. Any language, or system, that supports the above definitions may be used.  As to the relational query language, it is convenient to use SQL, but the same queries could easily also be formulated in Datalog or other relational query language.
 
