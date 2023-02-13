@@ -13,7 +13,7 @@ One of the relational model's key benefits is that programmers were, to a greate
 
 The Jetisu Toolkit is exploring the possibility that the relational model can do for rules and code what it did for data. The following diagram is a representation of what this might look like:
 
-<img width="75%" src="images/doing for computation what rm did for data.png">
+<img width="85%" src="images/doing for computation what rm did for data.png">
 
 ## Querying Rules As Code
 The examples are chosen to illustrate the benefits (and/or challenges) of querying intensionally defined relations to model rules as code.
