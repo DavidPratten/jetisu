@@ -40,11 +40,11 @@ Here is help on [How to run the example notebooks](docs/run_notebooks.md)
 Every table has an intension, which is its intended meaning and its extension which is its list of rows. But not all tables 
 are defined in the same way!  
 
-| How defined                       | Intension (a test that is true if a row is a member of the table) | Extension (list of rows)          |
-|-----------------------------------|-------------------------------------------------------------------|-----------------------------------|
-| Extensionally defined             | Natural Language                                                  | __Listed out in a table__         |
-| Derived from other relations | Query in Relational Algebra, SQL, Datalog, including fixed point operators| Generated on demand or cached for reuse.
-| Intensionally defined             | __Computable Constraints and Rules__                              | Generated or recognised on demand |
+| How defined                  | Intension (a test that is true if a row is a member of the table) | Extension (list of rows)                       |
+|------------------------------|-------------------------------------------------------------------|------------------------------------------------|
+| Extensionally defined        | Natural Language                                                  | Listed out in a table                          |
+| Derived from other relations | Query in Relational Algebra, SQL, Datalog, including fixed point operators| Generated on demand or materialised for reuse. 
+| __Intensionally defined__    | __Computable Constraints and Rules__                              | __Generated or recognised on demand__          |
 
 The idea of a non-derived relation that is defined by computable constraints and rules goes back to the 1970's and 1980's at the beginning of the relational database era. Early references include:
 
