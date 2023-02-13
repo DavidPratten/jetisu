@@ -48,8 +48,8 @@ are defined in the same way!
 
 The idea of a non-derived relation that is defined by computable constraints and rules goes back to the 1970's and 1980's at the beginning of the relational database era. Early references include:
 
-- __Algorithmic relations__ proposed in 1975 by Patrick Hall, Peter Hitchcock and Stephen Todd. [(PDF)](https://dl.acm.org/doi/pdf/10.1145/512976.512998) 
-- __Computed relations__ described in 1981 by David Maier and David Warren. [(PDF)](https://dl.acm.org/doi/pdf/10.1145/582318.582345)
+- __Algorithmic relations__ proposed in 1975 by Patrick Hall, Peter Hitchcock and Stephen Todd (hereafter HHT). [(PDF)](https://dl.acm.org/doi/pdf/10.1145/512976.512998) 
+- __Computed relations__ described in 1981 by David Maier and David Warren (hereafter MW). [(PDF)](https://dl.acm.org/doi/pdf/10.1145/582318.582345)
 
 These proposals share a common assumption that computation is inherently directed. Neither paper suggested that an algorithmic, or computed relation could be defined in such a way that all directions of computation might be possible "out-of-the-box" with just a single definition.
 
@@ -69,9 +69,9 @@ __Robust abstraction:__ Intensionally defined relations protect the relational p
 
 __Ready for query optimisation__: Existing query optimisers for extensional and derived relations can be broadened to cover querying intensionally defined relations, leading to efficiency gains over time. 
 
-__Intimate connection between the constraints in the relation's intensional definition and the ```WHERE``` clause in a query over the relation:__ A key implication of the above definition is that the relational algebra ```SELECT``` or ```σ``` operator (```WHERE``` clause in SQL) contains constraints that may be pushed down into the definition of the relation prior to retrieving the rows in the relation, rather than being applied as a filter after retrieving the rows from the relation.
+__Intimate connection between the constraints in the relation's intensional definition and the ```WHERE``` clause in a query over the relation:__ A key implication of the above definition is that the relational algebra ```SELECT``` or ```σ``` operator (```WHERE``` clause in SQL) contains constraints that may be __pushed down__ into the definition of the relation prior to retrieving the rows in the relation, rather than being applied as a filter after retrieving the rows from the relation.
 
-__Single source of truth:__ The relational algebra is inherently agnostic to which attributes are known and used to constrain the relation and which attributes are unknown and which are sought as the answer. An intensionally defined relation is omnidirectional and may be used to query rules "forward" or in "reverse" depending on what is known prior to querying.
+__Single source of truth:__ The relational algebra is inherently agnostic to which attributes are known and used to constrain the relation and which attributes are unknown and which are sought as the answer. An intensionally defined relation may be used to query rules "forward" or in "reverse" depending on what is known prior to querying. Following HHT, the extent to which a relation is omnidirectional is called its 'effectiveness'.
 
 __Write once, use anywhere and Privacy friendly:__ Rules and data are kept in separate relations. Rules may be applied, when appropriate, to the right data by a variant of the relational `join` `⨝` creating a derived relation which is then available for further processing.
 
