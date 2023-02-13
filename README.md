@@ -69,9 +69,9 @@ __Robust abstraction:__ Intensionally defined relations protect the relational p
   
 __Intimate connection between the constraints in the relation's intensional definition and the ```WHERE``` clause in a query over the relation:__ A key implication of the above definition is that the relational algebra ```SELECT``` or ```σ``` operator (```WHERE``` clause in SQL) contains constraints that may be pushed down into the definition of the relation prior to retrieving the rows in the relation, rather than being applied as a filter after retrieving the rows from the relation.
 
-__Single source of truth:__ The relational algebra is inherently agnostic to which attributes are known and used to constrain the relation and which attributes are unknown and which are sought as the answer. An intensionally defined relation may be used to query rules "forwards" or in "reverse" depending on what is known prior to querying.
+__Single source of truth:__ The relational algebra is inherently agnostic to which attributes are known and used to constrain the relation and which attributes are unknown and which are sought as the answer. An intensionally defined relation is omnidirectional and may be used to query rules "forward" or in "reverse" depending on what is known prior to querying.
 
-__Isolation of rules from data:__ Rules and data are kept in separate relations. The only connection between rules and data is by creating a derived relation using some variant of relational `join` `⨝`. This enables a "write rules once and use anywhere" philosophy.
+__Write rules once and use anywhere:__ Rules and data are kept in separate relations. Rules are applied to the data by a variant of the relational `join` `⨝` creating a derived relation which is then available for further processing.
 
 __Better together:__ The `natural join` `⨝` of two intensionally defined relations with common attributes has a stronger predicate over its attributes than the two relations taken separately.
 
