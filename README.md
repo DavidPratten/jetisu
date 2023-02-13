@@ -65,8 +65,10 @@ This definition closely mirrors the definition of a relation in relational datab
 
 __Not derived from other relations:__ An intensionally defined relation is a standalone computational artifact and not derived from other relations.
 
-__Robust abstraction:__ Intensionally defined relations protect the relational programmer from needing to master Logic Programming, Constraint Programming, Search, Numerical Methods, Linear Programming, Symbolic Computation, and manage multiple semantics, termination, and negation, closed and open worlds, etc.  
-  
+__Robust abstraction:__ Intensionally defined relations protect the relational programmer from needing to master Logic Programming, Constraint Programming, Search, Numerical Methods, Linear Programming, Symbolic Computation, and manage multiple semantics, termination, and negation, closed and open worlds, etc.
+
+__Ready for query optimisation__: Existing query optimisers for extensional and derived relations can be broadened to cover querying intensionally defined relations, leading to efficiency gains over time. 
+
 __Intimate connection between the constraints in the relation's intensional definition and the ```WHERE``` clause in a query over the relation:__ A key implication of the above definition is that the relational algebra ```SELECT``` or ```σ``` operator (```WHERE``` clause in SQL) contains constraints that may be pushed down into the definition of the relation prior to retrieving the rows in the relation, rather than being applied as a filter after retrieving the rows from the relation.
 
 __Single source of truth:__ The relational algebra is inherently agnostic to which attributes are known and used to constrain the relation and which attributes are unknown and which are sought as the answer. An intensionally defined relation is omnidirectional and may be used to query rules "forward" or in "reverse" depending on what is known prior to querying.
