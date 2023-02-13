@@ -71,7 +71,7 @@ __Intimate connection between the constraints in the relation's intensional defi
 
 __Single source of truth:__ The relational algebra is inherently agnostic to which attributes are known and used to constrain the relation and which attributes are unknown and which are sought as the answer. An intensionally defined relation is omnidirectional and may be used to query rules "forward" or in "reverse" depending on what is known prior to querying.
 
-__Write rules once and use anywhere:__ Rules and data are kept in separate relations. Rules are applied to the data by a variant of the relational `join` `⨝` creating a derived relation which is then available for further processing.
+__Write rules once and use anywhere and Privacy friendly:__ Rules and data are kept in separate relations. Rules are applied to the data by a variant of the relational `join` `⨝` creating a derived relation which is then available for further processing.
 
 __Better together:__ The `natural join` `⨝` of two intensionally defined relations with common attributes has a stronger predicate over its attributes than the two relations taken separately.
 
