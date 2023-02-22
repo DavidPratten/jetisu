@@ -69,6 +69,8 @@ __Not derived from other relations:__ An intensionally defined relation is a sta
 
 __Queried by name:__ An intensionally defined relation appears by `name` in a query in the same way that any other relation does. e.g. If `australian_gst` is an intensionally defined relation then in SQL it will be queried like this: `SELECT gst_amount FROM australian_gst WHERE price=100;`.
 
+__Separation of Concerns__: The three discipline areas of data management, constraint and logic programming, and relational query languages can develop independently and work together in predictable ways around the common abstraction of the relation.
+
 __Robust abstraction:__ Intensionally defined relations protect the relational programmer from needing to master Logic Programming, Constraint Programming, Search, Numerical Methods, Linear Programming, Symbolic Computation, and manage multiple semantics, termination, and negation, closed and open worlds, etc.
 
 __Ready for query optimisation__: Existing query optimisers for extensional and derived relations can be broadened to cover querying intensionally defined relations, leading to efficiency gains over time. 
