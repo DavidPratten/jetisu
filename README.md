@@ -7,11 +7,11 @@ Jetisu is a toolset for modelling with __intensionally defined relations__.
 - "__intensionally defined__" means the table is not defined a list of rows, or derived from other tables, but defined by computable rules.
 
 ## Doing for computation and rules what the relational model did for data
-Prior to the advent of the relational model, programmers' mental model of data spanned multiple levels of abstraction and required them to procedurally navigate either hierarchies or networks to access data. The relational model challenged this approach and provided a long-lived and robust mental model of data for programmers to use (Schemas and SQL).  
+Prior to the advent of the relational model, programmers' mental model of data spanned multiple levels of abstraction and required them to procedurally navigate either hierarchies or networks to access data. The relational model challenged this approach and provided a stable and robust mental model of data for programmers to use (Schemas and Relational Queries).  
 
 One of the relational model's key benefits is that programmers were, to a greater extent, insulated from innovation in database technologies. This isolation reduced, or removed, the cost of adoption of innovations in technologies such as: hardware, caching, virtualisation, cryptography, storage, sharding, redundancy, indexing, query optimisation, distributed systems, etc.
 
-The Jetisu Toolkit is exploring the possibility that the relational model can do for rules and code what it did for data. The following diagram is a representation of what this might look like:
+The Jetisu Toolkit is exploring the possibility that the relational model can do for rules and code what it did for data. And provide a stable and robust mental model of rules for programmers to use (Schemas and Relational Queries). The following diagram is a representation of what this might look like:
 
 <img width="100%" src="images/doing for rules what rm did for data.png">
 
@@ -46,6 +46,7 @@ are defined in the same way!
 | Derived from other relations | Query in Relational Algebra, SQL, Datalog, including fixed point operators| Generated on demand or materialised for reuse. 
 | __Intensionally defined__    | __Computable Constraints and Rules__                              | __Generated or recognised on demand__          |
 
+### Computed or Algorithmic Relations
 The idea of a non-derived relation that is defined by computable constraints and rules goes back to the 1970's and 1980's at the beginning of the relational database era. Early references include:
 
 - __Algorithmic relations__ proposed in 1975 by Patrick Hall, Peter Hitchcock and Stephen Todd (hereafter HHT). [(PDF)](https://dl.acm.org/doi/pdf/10.1145/512976.512998) 
@@ -53,10 +54,16 @@ The idea of a non-derived relation that is defined by computable constraints and
 
 These proposals share a common assumption that computation is inherently directed. Neither paper suggested that an algorithmic, or computed relation could be defined in such a way that all directions of computation might be possible "out-of-the-box" with just a single definition.
 
-The maturation of satisfaction solvers and of the constraint language [MiniZinc](https://www.minizinc.org) have provided the building blocks for realising ideas that were put forward nearly 50 years ago. The Jetisu toolkit calls these algorithmic, or computed, relations: "intensionally defined relations".
+### Constraint Programming
+From the late 1980s the discipline of Constraint Programming CP and Constraint Logic Programming CLP emerged and begin to explore what it took to define a relation as a computable predicate over the cross product of the domains of attributes. Here is a survey of this work and a key reference for the constraint programming language [MiniZinc](https://www.minizinc.org):
+
+- __Constraint Logic Programming: A Survey.__ (1994) J. Jaffar, Michael J. Maher
+- __MiniZinc: Towards a Standard CP Modelling Language.__ (2007) N. Nethercote, Peter James Stuckey, Ralph Becket, S. Brand, Gregory J. Duck, Guido Tack
+
+The two ideas of computed and algorithmic relations put together with constraint logic programming are foundations of what the Jetisu toolkit calls: "intensionally defined relations".
 
 ## A theory of intensionally defined relations
-Intensionally defined relations are based on the intuition that the correct generalisation of an extensionally defined relation is a computable predicate over the cross-product of the domains of the attributes. 
+Intensionally defined relations are based on the intuition that the generalisation of an extensionally defined relation is a computable predicate over the cross-product of the domains of the attributes. 
 
 An __intensionally defined relation__ is 
 - a set of typed attributes (or columns) A, along with
