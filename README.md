@@ -57,8 +57,8 @@ These proposals share a common assumption that computation is inherently directe
 ### Constraint Programming
 From the late 1980s the discipline of Constraint Programming CP and Constraint Logic Programming CLP emerged and begin to explore what it took to define a relation as a computable predicate over the cross product of the domains of attributes. Here is a survey of this work and a key reference for the constraint programming language [MiniZinc](https://www.minizinc.org):
 
-- __Constraint Logic Programming: A Survey.__ (1994) J. Jaffar, Michael J. Maher
-- __MiniZinc: Towards a Standard CP Modelling Language.__ (2007) N. Nethercote, Peter James Stuckey, Ralph Becket, S. Brand, Gregory J. Duck, Guido Tack
+- __Constraint Logic Programming: A Survey.__ (1994) J. Jaffar, Michael J. Maher [(PDF)](https://www.sciencedirect.com/science/article/pii/0743106694900337?via%3Dihub)
+- __MiniZinc: Towards a Standard CP Modelling Language.__ (2007) N. Nethercote, Peter James Stuckey, Ralph Becket, S. Brand, Gregory J. Duck, Guido Tack [(SpringerLink PDF)](https://link.springer.com/chapter/10.1007/978-3-540-74970-7_38)
 
 The two ideas of computed and algorithmic relations put together with constraint logic programming are foundations of what the Jetisu toolkit calls: "intensionally defined relations".
 
