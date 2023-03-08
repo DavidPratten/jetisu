@@ -1,6 +1,5 @@
 # fly.toml file generated for shy-feather-8158 on 2023-03-08T21:24:24+11:00
 
-app = "jetisu"
 kill_signal = "SIGINT"
 kill_timeout = 5
 
