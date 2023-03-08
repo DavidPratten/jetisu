@@ -1,6 +1,7 @@
 # How to run the example notebooks
-Here is a step by step guide to running and/or edit and re-running the example [Jupyter](https://jupyter.org/) notebooks.
+Here is a step by step guide to running and/or edit and re-running the example [Jupyter](https://jupyter.org/) notebooks.  This will work where ever docker containers are supported. Here are detailed instructions for two options.  On your own computer and on https://fly.io
 
+## On Docker on your computer
 - Install Docker on your computer. https://docs.docker.com/get-docker/
 - Open a terminal window and run the following command:
 ```shell
@@ -15,3 +16,16 @@ docker run -p 8888:8888 ghcr.io/davidpratten/jetisu:latest
 - See here for [Jupyter Notebook Help](https://jupyter-notebook.readthedocs.io/en/stable/notebook.html)
 
 ![img.png](jetisu_jupyter_lab.png)
+
+## On fly.io
+
+Follow steps 1 to 3 here https://fly.io/docs/hands-on/ 
+
+![Hands-on with Flyl.io](handsonwithflyio.png)
+
+When you get to step 4. substitute this command to launch the Jetisu Toolkit notebooks.
+
+```
+flyctl launch --image ghcr.io/davidpratten/jetisu:latest --now --generate-name --region lax --dockerignore-from-gitignore --internal-port 8888
+```
+
