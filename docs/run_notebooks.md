@@ -36,7 +36,7 @@ flyctl launch --image ghcr.io/davidpratten/jetisu:latest --now --generate-name -
 ```
 fly.io will allocate a unique name for your app and you will see a ```Logs:``` monitoring URL on screen.
 
-![results of fly.io launch.png](results of fly.io launch.png)
+![results of fly.io launch.png](results%20of%20fly.io%20launch.png)
 
 4c. Copy and paste your monitoring URL into your browser.  If the launch and deploy were successful, at the bottom of the log you will see the access token allocated to your instance of the Jetisu Toolkit Notebooks.
 
