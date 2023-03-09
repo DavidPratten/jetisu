@@ -19,6 +19,8 @@ docker run -p 8888:8888 ghcr.io/davidpratten/jetisu:latest
 
 ## On fly.io
 
+__SECURITY NOTE__: _after deploying the notebooks to the internet be sure to keep the access token secret. See [Security in Jupyter Notebooks](https://jupyter-server.readthedocs.io/en/latest/operators/security.html#security-in-notebook-documents) for more information._ 
+
 Follow steps 1 to 3 here https://fly.io/docs/hands-on/ 
 
 ![Hands-on with Flyl.io](handsonwithflyio.png)
@@ -52,4 +54,10 @@ fly.io will allocate a unique name for your app and you will see a ```Logs:``` m
 4h. Congratulations! The notebooks are running on the internet and you can edit and run them.
 ![img.png](jetisu_jupyter_lab.png)
 
+After successful deployment you can set the access token to a string of your own choosing by issuing the following command, providing a [UUID](https://www.uuidgenerator.net/) of your own. After this command is issued, your notebook's server will reboot and start using your token.
+
+```
+flyctl secrets set JUPYTER_TOKEN=
+```
+### Remove the app from fly.io
 To remove the app once you are finished with it, use the ```Settings``` link on the dashboard for your app.
