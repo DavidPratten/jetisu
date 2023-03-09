@@ -79,7 +79,7 @@ Given that a __relation__ is an instantiation of
 
 ```σP(dom(a1) × dom( a2) × … × dom(aN)) for some predicate P and attributes a1, a2, …, aN ∈ A.```
 
-- An __extensionally-defined relation__ captures the relation as a list of tuples for which the predicate ```p``` is asserted to be true.
+- An __extensionally-defined relation__ captures the relation as a list of tuples for which the predicate ```P``` is asserted to be true.
 
 - An __intensionally-defined relation__ directly computes ```σp(dom(A1) × dom( A2) × … × dom(An))``` within error bound 𝜖 in the context of a relational query. 
 
