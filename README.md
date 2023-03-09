@@ -46,6 +46,18 @@ are defined in the same way!
 | Derived from other relations | Query in Relational Algebra, SQL, Datalog, including fixed point operators| Generated on demand or materialised for reuse. 
 | __Intensionally defined__    | __Computable Constraints and Rules__                              | __Generated or recognised on demand__          |
 
+Drawing on the language of the Relational Algebra, and more formally, the difference between the three kinds of relations can be expressed as follows: 
+
+Given that a __relation__ is a 
+
+```σp(dom(A1) × dom( A2) × … × dom(An)) for some predicate p and attributes A1, A2, …, An.```
+
+- An __extensionally-defined relation__ captures the relation as a list of tuples.
+
+- An __intensionally-defined relation__ directly computes ```σp(dom(A1) × dom( A2) × … × dom(An))```      in the context of a relational query. 
+
+- A __derived relation__ is the result of a relational query (possibly including fixed-point operators) over one,  or more, relations of any of these three kinds.
+
 ### Computed or Algorithmic Relations
 The idea of a non-derived relation that is defined by computable constraints and rules goes back to the 1970's and 1980's at the beginning of the relational database era. Early references include:
 
