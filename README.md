@@ -75,7 +75,7 @@ This definition closely mirrors the definition of a relation in relational datab
 
 __Not derived from other relations:__ An intensionally defined relation is a standalone computational artifact and not derived from other relations. And the three kinds of relations can be expressed formally as follows: 
 
-Given that a __relation__ is an instantiation of 
+Given that a __relation__ is an instantiation of: 
 
 ```σP(dom(a1) × dom(a2) × … × dom(aN)) for some predicate P and attributes a1, a2, …, aN ∈ A.```
 
