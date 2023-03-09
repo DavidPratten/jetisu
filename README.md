@@ -46,17 +46,6 @@ are defined in the same way!
 | Derived from other relations | Query in Relational Algebra, SQL, Datalog, including fixed point operators| Generated on demand or materialised for reuse. 
 | __Intensionally defined__    | __Computable Constraints and Rules__                              | __Generated or recognised on demand__          |
 
-Drawing on the language of the Relational Algebra, and more formally, the difference between the three kinds of relations can be expressed as follows: 
-
-Given that a __relation__ is a 
-
-```σp(dom(A1) × dom( A2) × … × dom(An)) for some predicate p and attributes A1, A2, …, An.```
-
-- An __extensionally-defined relation__ captures the relation as a list of tuples.
-
-- An __intensionally-defined relation__ directly computes ```σp(dom(A1) × dom( A2) × … × dom(An))```      in the context of a relational query. 
-
-- A __derived relation__ is the result of a relational query (possibly including fixed-point operators) over one,  or more, relations of any of these three kinds.
 
 ### Computed or Algorithmic Relations
 The idea of a non-derived relation that is defined by computable constraints and rules goes back to the 1970's and 1980's at the beginning of the relational database era. Early references include:
@@ -78,13 +67,23 @@ The two ideas of computed and algorithmic relations put together with constraint
 Intensionally defined relations are based on the intuition that the generalisation of an extensionally defined relation is a computable predicate over the cross-product of the domains of the attributes. 
 
 An __intensionally defined relation__ is 
-- a set of typed attributes (or columns) A, along with
-- a computable predicate (or constraint) C over the attributes in A, which
+- a set of typed attributes (or columns) ```A```, along with
+- a computable predicate (or constraint) ```P``` over the attributes in ```A```, which
 - when further constrained in a relational query, is indistinguishable, (within some error bound 𝜖), from its finite extension of tuples (rows).
 
 This definition closely mirrors the definition of a relation in relational database theory, and here are some implications of this definition:
 
-__Not derived from other relations:__ An intensionally defined relation is a standalone computational artifact and not derived from other relations.
+__Not derived from other relations:__ An intensionally defined relation is a standalone computational artifact and not derived from other relations. And the three kinds of relations can be expressed formally as follows: 
+
+Given that a __relation__ is an instantiation of 
+
+```σP(dom(a1) × dom( a2) × … × dom(aN)) for some predicate p and attributes a1, a2, …, aN ∈ A.```
+
+- An __extensionally-defined relation__ captures the relation as a list of tuples for which the predicate ```p``` is asserted to be true.
+
+- An __intensionally-defined relation__ directly computes ```σp(dom(A1) × dom( A2) × … × dom(An))``` ± 𝜖 in the context of a relational query. 
+
+- A __derived relation__ is the result of a relational query (possibly including fixed-point operators) over one,  or more, relations of any of these three kinds.
 
 __Queried by name:__ An intensionally defined relation appears by `name` in a query in the same way that any other relation does. e.g. If `australian_gst` is an intensionally defined relation then in SQL it will be queried like this: `SELECT gst_amount FROM australian_gst WHERE price=100;`.
 
