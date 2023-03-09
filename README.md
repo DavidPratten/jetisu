@@ -81,7 +81,7 @@ Given that a __relation__ is an instantiation of
 
 - An __extensionally-defined relation__ captures the relation as a list of tuples for which the predicate ```p``` is asserted to be true.
 
-- An __intensionally-defined relation__ directly computes ```σp(dom(A1) × dom( A2) × … × dom(An))``` with error bound 𝜖 in the context of a relational query. 
+- An __intensionally-defined relation__ directly computes ```σp(dom(A1) × dom( A2) × … × dom(An))``` within error bound 𝜖 in the context of a relational query. 
 
 - A __derived relation__ is the result of a relational query (possibly including fixed-point operators) over one,  or more, relations of any of these three kinds.
 
