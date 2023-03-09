@@ -37,21 +37,27 @@ flyctl launch --image ghcr.io/davidpratten/jetisu:latest --now --generate-name -
 fly.io will allocate a unique name for your app and you will see a ```Logs:``` monitoring URL on screen.
 
 ![results of fly.io launch.png](results of fly.io launch.png)
+
 4c. Copy and paste your monitoring URL into your browser.  If the launch and deploy were successful, at the bottom of the log you will see the access token allocated to your instance of the Jetisu Toolkit Notebooks.
 
 ![access token.png](access%20token.png)
+
 4d. Copy the access token
 
 4e. Click the Overview link on the top right of the page.
+
 ![overview button.png](overview%20button.png)
 
 4f. Click the hostname link to go to the notebooks on the web
+
 ![click on the host name.png](click%20on%20the%20host%20name.png)
 
 4g. Paste in the access token that you copied at step 4d. above.
+
 ![enter the access token.png](enter%20the%20access%20token.png)
 
 4h. Congratulations! The notebooks are running on the internet and you can edit and run them.
+
 ![img.png](jetisu_jupyter_lab.png)
 
 After successful deployment you can set the access token to a string of your own choosing by issuing the following command, providing a [UUID](https://www.uuidgenerator.net/) of your own. After this command is issued, your notebook's server will reboot and start using your token.
