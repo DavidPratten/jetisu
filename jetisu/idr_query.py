@@ -13,7 +13,7 @@ import math
 
 from sqlglot import exp, parse_one
 from sqlglot.executor import execute
-from sqlglot.optimizer.lower_identities import lower_identities
+from sqlglot.optimizer.normalize_identifiers import normalize_identifiers
 
 
 def idr_read_model(canonical_table_name):
@@ -61,7 +61,7 @@ def idr_query(sql_query, return_data):
     # see https://github.com/tobymao/sqlglot/blob/638ed265f195219d7226f4fbae128f1805ae8988/sqlglot/optimizer/lower_identities.py
     # Assuming the schema is all lower case, this essentially makes identifiers case-insensitive.
     # Implication for MiniZinc is that all parameters MUST be lowercase.
-    for node_tuple in lower_identities(parse_one(sql_query)).walk(bfs=False):
+    for node_tuple in normalize_identifiers(parse_one(sql_query)).walk(bfs=False):
         if isinstance(node_tuple[0], exp.Identifier):
             # for current purposes the Identifiers may be ignored.
             continue
@@ -164,24 +164,19 @@ def idr_query(sql_query, return_data):
         stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     output = result.stdout.decode('utf-8')
     data_output = []
-    data = False
     column = []
     for line in output.splitlines():
-        if not data:
-            if line == "% allsat model":
-                data = True
-        if data:
-            if line == "% allsat model":
-                column = []
-            elif "UNSATISFIABLE" in line:
-                pass
-            elif line == "----------":
-                data_output.append('{' + ', '.join(column) + '}')
-            elif line == "==========":
-                pass
-            else:
-                x = line.replace(";", "").split("=")
-                column.append('"' + x[0].strip() + '": ' + (mzn_output_quote(x[0].strip(), x[1].strip(), dict([(k, v) for v, k in typed_parameters_list])) if x[1].strip() != '-0.0' else '0.0'))
+        if line == "% allsat model":
+            pass
+        elif "UNSATISFIABLE" in line:
+            pass
+        elif line == "----------":
+            data_output.append('{' + ', '.join(column) + '}')
+        elif line == "==========":
+            pass
+        else:
+            x = line.replace(";", "").split("=")
+            column.append('"' + x[0].strip() + '": ' + (mzn_output_quote(x[0].strip(), x[1].strip(), dict([(k, v) for v, k in typed_parameters_list])) if x[1].strip() != '-0.0' else '0.0'))
     # print('data_output', data_output)
     solver_data = json.loads('[' + ', '.join(data_output) + ']')
 
@@ -310,3 +305,8 @@ def jetisu_ask_next_question(goal_list, tables, where_condition, residual_column
 
     chosen_tables = {table_name: retdata}
     return goal_list, chosen_tables, chosen_where_condition, False
+
+
+if __name__ == "__main__":
+    os.chdir('..')
+    print(idr_query('select * from standard_birthday_money where age = 10;', 'markdown table'))
