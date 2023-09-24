@@ -2,6 +2,8 @@
 
 The following puzzle is from Peter Revesz's 1993 paper "A closed-form evaluation for Datalog queries with integer (gap)-order constraints." _Theoretical Computer Science, 116(1), 117–149._ https://doi.org/10.1016/0304-3975(93)90222-F
 
+The solution below demonstrates an approach to this problem using complete relations.
+
 ## Problem
 
 > Alfred and Alice have children Bernard, Carl and Donald in this order.
