@@ -42,13 +42,15 @@ Here is help on [How to run the example notebooks](docs/run_notebooks.md)
 ## Background to "sigma complete relations"
 Let's compare regular data relations with sigma complete relations. 
 
-|                  | __Data Relations__ | __Sigma Complete Relations__ |
-|-------------|----------------------------|----------------------------|
-| __Purpose__ | Capture data about entities of interest  | Do computation and implement business rules |
-| __Consists of a rows (tuples) and columns (attributes)__ | Yes | Yes |
-| __When created the table is__ | Empty| Complete<br> (full, containing every possible row)
-| __Specific table is created by__    | Rows are inserted, updated and removed using Data Manipulation Statements (DML) `INSERT`, `UPDATE`, and `DELETE` | The relation is shaped using constraints in a `WHERE` clause. |
-| __Discipline which has focused on these__ | Relational Database community | Constraint Programming community |
+|                                                          | __Data Relations__                                                                                              | __Sigma Complete Relations__                                  |
+|----------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------|
+| __Purpose__                                              | Capture data about entities of interest                                                                         | Do computation and implement business rules                   |
+| __Consists of a rows (tuples) and columns (attributes)__ | Yes                                                                                                             | Yes                                                           |
+| __When created the table is__                            | Empty                                                                                                           | Complete<br> (full, containing every possible row)            
+| __Specific table is created by__                         | Rows are inserted, updated and removed using Data Manipulation Statements (DML) `INSERT`, `UPDATE`, and `DELETE` | The relation is shaped using constraints in a `WHERE` clause. |
+| __Is it a constant value in the database?__              | No                                                                                                              | Yes                                                           |
+| __Holds data about entities of interest__                | Yes | No |
+| __Discipline which has focused on these__                | Relational Database community                                                                                   | Constraint Programming community                              |
 
 
 ### Computed or Algorithmic Relations
