@@ -2,6 +2,8 @@
 
 The following puzzle is from Peter Revesz's 1993 paper "A closed-form evaluation for Datalog queries with integer (gap)-order constraints." _Theoretical Computer Science, 116(1), 117–149._ https://doi.org/10.1016/0304-3975(93)90222-F
 
+## Problem
+
 > Alfred and Alice have children Bernard, Carl and Donald in this order.
 Bernard and Bernice have a child Edward. Donald and Denise have children Elise and
 Fred. Edward and Elise have a child, Gerald. Fred and Felice have a child, Harold. 
@@ -10,7 +12,17 @@ month. Elise is over four years older than her younger brother Fred, and Bernard
 25 years older than his son Edward. Assuming that there is over 17 years difference between parents and their children
 and that no siblings are twins or born in the same year, how old is Donald?
 
-And here is a literate programming solution using a complete relation and SQL.
+And here the solution with a literate programming query using a complete relation and SQL.
+
+## Solution
+
+| **Donald_age** |
+| -- |
+| 47 |
+| 48 |
+| 49 |
+
+## Relation Expression
 
 ```SQL
 SELECT Donald_age
