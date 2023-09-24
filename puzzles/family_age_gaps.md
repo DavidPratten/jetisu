@@ -28,7 +28,7 @@ And here the solution with a literate programming query using a complete relatio
 
 ```SQL
 SELECT Donald_age
-from COMPLETE(
+FROM COMPLETE(
     Alfred_age int, Alice_age int, Bernard_age int,
     Bernice_age int, Carl_age int, Donald_age int,
     Denise_age int, Edward_age int, Elise_age int,
