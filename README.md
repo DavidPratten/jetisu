@@ -15,7 +15,10 @@ The Jetisu Toolkit is exploring the possibility that the relational model can do
 
 <img width="100%" src="images/doing for rules what rm did for data.png">
 
-## Rules As Code examples
+## Puzzle Examples
+- [Family Age Gaps](puzzles/family_age_gaps.md)
+
+## Rules As Code Examples
 The examples are chosen to illustrate the benefits (and/or challenges) of using sigma complete relations to model rules as code.
 - [ACT Conveyance Duty](ACT_Conveyance_Duty.ipynb)
 - [Australian GST](Australian_GST.ipynb)
