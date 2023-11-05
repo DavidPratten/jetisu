@@ -19,7 +19,7 @@ The Jetisu Toolkit is exploring the possibility that the relational model can do
 
 - 2023 "[Relational Expressions for Data Transformation and Computation](https://arxiv.org/abs/2309.11178)" co-authored with my PhD supervisor Luke Mathieson and presented at [Australasian Database Conference 2023 as part of the Shepherding Track](https://adc2023.github.io/shepherding-track). 
 
-[![Watch the video](https://img.youtube.com/vi/K5bRJn7Hb9o/default.jpg)](https://www.youtube.com/watch?v=K5bRJn7Hb9o)  [Slide deck](https://github.com/DavidPratten/jetisu/blob/main/presentations/ADC23%20Paper%2013%20Shepherding%20Track%20Session%20Presentation%20Post%20Revision%2001.pdf) 
+[![Watch the video](https://img.youtube.com/vi/K5bRJn7Hb9o/default.jpg)](https://www.youtube.com/watch?v=K5bRJn7Hb9o)  [Slide deck](https://github.com/DavidPratten/jetisu/blob/main/presentations/ADC23%20Paper%2013%20Shepherding%20Track%20Session%20Presentation.pdf) 
 
 
 ## Puzzle Examples
