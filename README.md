@@ -15,6 +15,13 @@ The Jetisu Toolkit is exploring the possibility that the relational model can do
 
 <img width="100%" src="images/doing for rules what rm did for data.png">
 
+## Papers and Presentations
+
+- 2023 "[Relational Expressions for Data Transformation and Computation](https://arxiv.org/abs/2309.11178)" co-authored with my PhD supervisor Luke Mathieson and presented at [Australasian Database Conference 2023 as part of the Shepherding Track](https://adc2023.github.io/shepherding-track). 
+
+[![Watch the video](https://img.youtube.com/vi/K5bRJn7Hb9o/default.jpg)](https://www.youtube.com/watch?v=K5bRJn7Hb9o)
+
+
 ## Puzzle Examples
 - [Family Age Gaps](puzzles/family_age_gaps.md)
 
